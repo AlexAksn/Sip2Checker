@@ -34,6 +34,8 @@ namespace Sip2Form
         public static readonly string Ok = "1";
         public static readonly string PatronInfo = "63";
         public static readonly string PatronInfoResp = "64";
+        public static readonly string PatronStatus = "23";
+        public static readonly string PatronStatusResp = "24";
         //Messages from SC to ACS
         public static readonly string ScStatus = "99";
         public static readonly string Version = "2.00";

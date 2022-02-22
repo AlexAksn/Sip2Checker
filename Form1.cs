@@ -89,7 +89,13 @@ namespace Sip2Form
                     }
 
                     var dateFld = DateTime.Now.ToString(Sip2Command.SipDatetime);
-                    var patronMessage = $"{Sip2Command.PatronInfo}001{dateFld}{Sip2Command.Summary}{Sip2Command.FidInstId}{instId}|{Sip2Command.FidPatronId}{barcode.Text}|{Sip2Command.FidTerminalPwd}{loginPwd.Text}|{Sip2Command.FidPatronPwd}{pin.Text}|{Sip2Command.FidSeq}{seqNum}{Sip2Command.FidCksum}";
+                    
+                    var patronMessage = usePatronStatus.Checked
+                            ? $"{Sip2Command.PatronStatus}001{dateFld}{Sip2Command.FidInstId}{instId}|{Sip2Command.FidPatronId}{barcode.Text}|{Sip2Command.FidTerminalPwd}{loginPwd.Text}|{Sip2Command.FidPatronPwd}{pin.Text}|{Sip2Command.FidSeq}{seqNum}{Sip2Command.FidCksum}"
+                            : $"{Sip2Command.PatronInfo}001{dateFld}{Sip2Command.Summary}{Sip2Command.FidInstId}{instId}|{Sip2Command.FidPatronId}{barcode.Text}|{Sip2Command.FidTerminalPwd}{loginPwd.Text}|{Sip2Command.FidPatronPwd}{pin.Text}|{Sip2Command.FidSeq}{seqNum}{Sip2Command.FidCksum}";
+
+
+                    //var patronMessage = $"{Sip2Command.PatronInfo}001{dateFld}{Sip2Command.Summary}{Sip2Command.FidInstId}{instId}|{Sip2Command.FidPatronId}{barcode.Text}|{Sip2Command.FidTerminalPwd}{loginPwd.Text}|{Sip2Command.FidPatronPwd}{pin.Text}|{Sip2Command.FidSeq}{seqNum}{Sip2Command.FidCksum}";
 
                     LogMessage($"Sent user info request: {patronMessage.WithCheckSum()}");
 
@@ -127,7 +133,8 @@ namespace Sip2Form
 
         private static bool ValidatePatronInfoFromResponse(string response)
         {
-            if (!response.StartsWith(Sip2Command.PatronInfoResp, StringComparison.InvariantCultureIgnoreCase))
+            if (!response.StartsWith(Sip2Command.PatronInfoResp, StringComparison.InvariantCultureIgnoreCase)
+                && !response.StartsWith(Sip2Command.PatronStatusResp, StringComparison.InvariantCultureIgnoreCase))
                 throw new Exception($"Patron information response did not match expected result. Response - {response}");
 
             var isAuthorized = response.Contains($"{Sip2Command.FidValidPatron}{Sip2Command.FidYes}") && response.Contains($"{Sip2Command.FidValidPatronPwd}{Sip2Command.FidYes}");
@@ -159,5 +166,6 @@ namespace Sip2Form
         {
             logBox.Clear();
         }
+
     }
 }

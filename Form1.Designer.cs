@@ -32,8 +32,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.authorizeBtn = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.usePatronStatus = new System.Windows.Forms.CheckBox();
+            this.institutionId = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.pin = new System.Windows.Forms.TextBox();
             this.barcode = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,15 +49,12 @@
             this.loginUser = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.port = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ipAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.logBox = new System.Windows.Forms.RichTextBox();
-            this.institutionId = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.port = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -117,6 +118,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "SIP2 Commands";
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button1.Location = new System.Drawing.Point(3, 228);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(486, 35);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Clear Log";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // authorizeBtn
             // 
             this.authorizeBtn.Dock = System.Windows.Forms.DockStyle.Top;
@@ -130,6 +142,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.usePatronStatus);
             this.groupBox3.Controls.Add(this.institutionId);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.pin);
@@ -151,16 +164,42 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "SIP2 Settings";
             // 
+            // usePatronStatus
+            // 
+            this.usePatronStatus.AutoSize = true;
+            this.usePatronStatus.Location = new System.Drawing.Point(91, 146);
+            this.usePatronStatus.Name = "usePatronStatus";
+            this.usePatronStatus.Size = new System.Drawing.Size(175, 17);
+            this.usePatronStatus.TabIndex = 17;
+            this.usePatronStatus.Text = "Use patron status message (23)";
+            this.usePatronStatus.UseVisualStyleBackColor = true;
+            // 
+            // institutionId
+            // 
+            this.institutionId.Location = new System.Drawing.Point(144, 109);
+            this.institutionId.Name = "institutionId";
+            this.institutionId.Size = new System.Drawing.Size(291, 20);
+            this.institutionId.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 116);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Institution ID:";
+            // 
             // pin
             // 
-            this.pin.Location = new System.Drawing.Point(91, 181);
+            this.pin.Location = new System.Drawing.Point(91, 206);
             this.pin.Name = "pin";
             this.pin.Size = new System.Drawing.Size(344, 20);
             this.pin.TabIndex = 14;
             // 
             // barcode
             // 
-            this.barcode.Location = new System.Drawing.Point(91, 152);
+            this.barcode.Location = new System.Drawing.Point(91, 169);
             this.barcode.Name = "barcode";
             this.barcode.Size = new System.Drawing.Size(344, 20);
             this.barcode.TabIndex = 13;
@@ -168,7 +207,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 188);
+            this.label7.Location = new System.Drawing.Point(13, 206);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
             this.label7.TabIndex = 12;
@@ -177,7 +216,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 155);
+            this.label6.Location = new System.Drawing.Point(13, 169);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 11;
@@ -247,6 +286,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SIP2 Server";
             // 
+            // port
+            // 
+            this.port.Location = new System.Drawing.Point(349, 26);
+            this.port.Name = "port";
+            this.port.Size = new System.Drawing.Size(86, 20);
+            this.port.TabIndex = 6;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -295,40 +341,6 @@
             this.logBox.Size = new System.Drawing.Size(606, 567);
             this.logBox.TabIndex = 6;
             this.logBox.Text = "";
-            // 
-            // institutionId
-            // 
-            this.institutionId.Location = new System.Drawing.Point(144, 109);
-            this.institutionId.Name = "institutionId";
-            this.institutionId.Size = new System.Drawing.Size(291, 20);
-            this.institutionId.TabIndex = 16;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 116);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Institution ID:";
-            // 
-            // port
-            // 
-            this.port.Location = new System.Drawing.Point(349, 26);
-            this.port.Name = "port";
-            this.port.Size = new System.Drawing.Size(86, 20);
-            this.port.TabIndex = 6;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.button1.Location = new System.Drawing.Point(3, 228);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(486, 35);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Clear Log";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -381,6 +393,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox port;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox usePatronStatus;
     }
 }
 
